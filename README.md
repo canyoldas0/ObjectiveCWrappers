@@ -1,5 +1,3 @@
-# ObjectiveCWrappers
-
 <h1> Objective-C Wrapper Project
 
 <h3> Purpose of the Project
