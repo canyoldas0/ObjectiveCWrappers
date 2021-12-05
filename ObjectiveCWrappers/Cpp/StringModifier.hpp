@@ -12,4 +12,6 @@ using namespace std;
 class StringModifier {
 public:
     string encryptString(string str);
+    string decryptString(string str);
+    
 };

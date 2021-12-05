@@ -82,7 +82,7 @@ class MainViewController: UIViewController {
         addViewElements()
         view.backgroundColor = .systemGroupedBackground
         
-//        print(StringModifierWrapper().encryptString("hello world 123123"))
+        print(StringModifierWrapper().encryptString("hello"))
     }
     
     //MARK: - Adding View Components to View
@@ -93,7 +93,7 @@ class MainViewController: UIViewController {
         view.addSubview(resultLabel)
         
         NSLayoutConstraint.activate([
-        
+            
             buttonStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             buttonStack.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             buttonStack.widthAnchor.constraint(equalToConstant: 300),
@@ -114,25 +114,39 @@ class MainViewController: UIViewController {
     
     //MARK: - Button Actions
     @objc func encryptButtonTapped(sender: UIButton) {
-//        StringModifierWrapper().encryptString("")
+        //        StringModifierWrapper().encryptString("")
         sender.startPressedAnimationCommon { finish in
-            print("encrypt")
+            guard let text = self.textField.text, text.count > 2 else {
+                self.resultLabel.text = "Text length must be greater than 2"
+                return
+            }
+            self.resultTitleLabel.text = "ENCRYPTED RESULT"
+            self.resultLabel.text = StringModifierWrapper().encryptString(text)
         }
         
     }
     
     @objc func decryptButtonTapped(sender: UIButton) {
-//        StringModifierWrapper().decryptString("")
+        //        StringModifierWrapper().decryptString("")
         sender.startPressedAnimationCommon { finish in
-            print("decrypt")
+            guard let text = self.textField.text, text.count > 2 else {
+                self.resultLabel.text = "Text length must be greater than 2"
+                return
+            }
+            self.resultTitleLabel.text = "DECRYPTED RESULT"
+            self.resultLabel.text = StringModifierWrapper().decryptString(text)
         }
     }
-
+    
 }
 
 //MARK: - TextFieldDelegate
 extension MainViewController: UITextFieldDelegate {
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
 
 //MARK: - UIView - Extension for Button Click Animation

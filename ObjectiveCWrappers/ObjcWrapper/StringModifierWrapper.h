@@ -11,7 +11,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface StringModifierWrapper : NSObject
 
--(NSString *)encryptString:(NSString *)str;
+-(NSString*)encryptString:(NSString*)str;
+-(NSString*)decryptString:(NSString*)str;
+
 
 @end
 
